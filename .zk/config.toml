@@ -1,0 +1,32 @@
+[format.markdown]
+colon-tags = false
+hashtags = false
+multiword-tags = false
+
+[group.daily]
+paths = ["journal/daily"]
+
+[group.daily.note]
+extension = "md"
+filename = "{{format-date now}}"
+template = "daily.md"
+
+[group.meeting]
+paths = ["meeting"]
+
+[group.meeting.note]
+filename = "{{format-date now}}_{{slug title}}"
+template = "meeting.md"
+
+[group.rolodex]
+paths = ["rolodex"]
+
+[group.rolodex.note]
+filename = "{{slug title}}"
+template = "person.md"
+
+[lsp.diagnostics]
+dead-link = "error"
+
+[note]
+template = "zettel.md"
