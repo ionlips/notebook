@@ -6,10 +6,10 @@ keywords: [linux]
 
 1.  Clone <https://github.com/ionlips/dotfiles>.
 1.  `git switch linux/non-root`.
-1.  [Download Neovim] locally as per [Install software locally](njyq).[^1]
+1.  [Download Neovim] locally as per [Install software locally](njyq.md).[^1]
 1.  [Install Starship].
 1.  `make stow`.
-1.  Compile Tree-sitter's CLI from source as per [Wednesday, July 22, 2026](journal/daily/2026-07-22).
+1.  Compile Tree-sitter's CLI from source as per [Wednesday, July 22, 2026](journal/daily/2026-07-22.md).
 
 > [!IMPORTANT]
 > auto-dark-mode.nvim doesn't work if you aren't in a desktop environment.

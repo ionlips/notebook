@@ -1,6 +1,7 @@
 [format.markdown]
 colon-tags = false
 hashtags = false
+link-drop-extension = false
 multiword-tags = false
 
 [group.daily]
