@@ -31,4 +31,4 @@ keywords: [gromacs, ichec, paclds]
     ```
 
 [^1]: Be careful with just copy and pasting it due to the inclusion of the
-    `$VAR` variable.
+    `VER` variable.
