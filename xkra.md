@@ -395,7 +395,50 @@ keywords: [gromacs, ichec, paclds]
 
 ## MeluXina
 
-Our respective project code is p201412.
+Our respective project code is p201412. GROMACS was installed as follows:
+
+```shell
+salloc --account p201412 --reservation gpudev -N 1 -p gpu -q dev -t 01:00:00
+```
+
+### Prerequisites
+
+Ensure Stow is installed as follows:
+
+```shell
+mkdir -p /project/home/p201412/.local/src/stow
+curl -L https://ftp.gnu.org/gnu/stow/stow-2.4.1.tar.gz -o /project/home/p201412/.local/src/stow/2.4.1.tar.gz
+tar \
+    --one-top-level=2.4.1 \
+    --strip-components=1 \
+    -C /project/home/p201412/.local/src/stow \
+    -f /project/home/p201412/.local/src/stow/2.4.1.tar.gz \
+    -x
+mkdir -p /project/home/p201412/.local/src/stow/2.4.1/build && cd $_
+../configure --prefix=/project/home/p201412/.local
+make && make install
+```
+
+1.  Install CUDA as follows:
+
+    <!-- markdownlint-disable MD013 -->
+    ```shell
+    VER=13.3.1
+    mkdir -p /project/home/p201412/.local/src/cuda
+    curl \
+        -L https://developer.download.nvidia.com/compute/cuda/$VER/local_installers/cuda_${VER}_610.43.02_linux.run \
+        -o /project/home/p201412/.local/src/cuda/$VER.run
+    sh /project/home/p201412/.local/src/cuda/$VER.run \
+        --defaultroot=/project/home/p201412/.local/opt/cuda-$VER \
+        --no-man-page \
+        --silent \
+        --toolkit \
+        --toolkitpath=/project/home/p201412/.local/opt/cuda-$VER
+    ```
+    <!-- markdownlint-enable MD013 -->
+
+    > [!IMPORTANT]
+    > Don't forget to add it to your `PATH`.
 
 [^1]: Be careful with just copy and pasting it due to the inclusion of the
     `VER` variable.
