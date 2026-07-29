@@ -6,9 +6,9 @@ keywords: []
 
 ## Contact details
 
--   Company:
-    -   Job title:
--   Email:
--   Phone number:
+-   **Company**:
+    -   **Job title**:
+-   **Email**:
+-   **Phone number**:
 
 ## Notes

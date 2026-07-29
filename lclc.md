@@ -2,7 +2,7 @@
 date: 2026-07-17
 keywords: [calibre]
 ---
-# Delete calibre's configuration
+# Delete calibre's config
 
 I have had issues where I create a calibre library, decide I want to delete it,
 and delete it. However, upon opening calibre again, it creates the same library

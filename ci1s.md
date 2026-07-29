@@ -4,10 +4,10 @@ keywords: []
 ---
 # PACLDS
 
-## `test_code/` on qllm
+## `data/test_code` on qllm
 
 `cd` into
-`/ichec/work/staff/ilipsiuc/paclds/data/test_code/simulations_files/`.
+`/ichec/work/staff/ilipsiuc/paclds/data/test_code/simulations_files`.
 
 Run the following:
 

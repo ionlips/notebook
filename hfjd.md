@@ -4,14 +4,13 @@ keywords: []
 ---
 # SAM 3 on qllm
 
-<https://huggingface.co/facebook/sam3> is the Hugging Face repository for it.
-One has to apply for access before the model's weights can be used.
+<https://huggingface.co/facebook/sam3> is the Hugging Face repo for it. One has
+to apply for access before the model's weights can be used.
 
-On qllm, I created a new directory within `/ichec/work/staff/` called
-`ilipsiuc/` and ran `chmod 700 /ichec/work/staff/ilipsiuc/` to make sure nobody
-else can access the directory.
+On qllm, I created a new directory within `/ichec/work/staff` called `ilipsiuc`
+and ran `chmod 700 ilipsiuc` to make sure nobody else can access the directory.
 
-Clone the official GitHub repository:
+Clone the official GitHub repo:
 
 ```shell
 git clone https://github.com/facebookresearch/sam3.git
