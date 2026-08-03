@@ -11,7 +11,7 @@ Ensure that Stow is installed first, as follows:
 mkdir -p ~/.local/opt ~/.local/src/stow
 
 # Download and extract.
-curl -L https://ftp.gnu.org/gnu/stow/stow-2.4.1.tar.gz -o ~/.local/src/stow/2.4.1.tar.gz
+curl https://ftp.gnu.org/gnu/stow/stow-2.4.1.tar.gz -L -o ~/.local/src/stow/2.4.1.tar.gz
 tar \
     --one-top-level=2.4.1 \
     --strip-components=1 \
@@ -35,7 +35,7 @@ PKG=foo VER=1.2.3
 mkdir -p ~/.local/src/$PKG
 
 # Download and extract.
-curl -L {{url}} -o ~/.local/src/$PKG/$VER.tar.gz
+curl {{url}} -L -o ~/.local/src/$PKG/$VER.tar.gz
 tar \
     --one-top-level=$VER \
     --strip-components=1 \
@@ -46,7 +46,7 @@ tar \
 # Configure and install.
 mkdir -p ~/.local/src/$PKG/$VER/build && cd $_
 ../configure --prefix=$HOME/.local/opt/$PKG-$VER
-make -j$(sysctl -n hw.ncpu) && make install
+make -j $(nproc) && make install
 
 # Symlink via Stow.
 stow -d ~/.local/opt -t ~/.local $PKG-$VER
@@ -62,7 +62,7 @@ PKG=foo VER=1.2.3
 mkdir -p ~/.local/src/$PKG
 
 # Download and extract.
-curl -L {{url}} -o ~/.local/src/$PKG/$VER.tar.gz
+curl {{url}} -L -o ~/.local/src/$PKG/$VER.tar.gz
 tar \
     --one-top-level=$VER \
     --strip-components=1 \
@@ -73,7 +73,7 @@ tar \
 # Configure and install.
 cd ~/.local/src/$PKG/$VER
 cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$HOME/.local/opt/$PKG-$VER
-cmake --build build -j$(sysctl -n hw.ncpu)
+cmake --build build -j $(nproc)
 cmake --install build
 
 # Symlink via Stow.
