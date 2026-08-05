@@ -35,6 +35,8 @@ mkdir -p /project/home/p201412/.local/src/stow/2.4.1/build && cd $_
 make && make install
 ```
 
+#### NVSHMEM-enabled build
+
 Load the required modules:
 
 ```shell
@@ -79,6 +81,107 @@ cmake \
     -DGMX_OPENMP=ON \
     -DGMX_USE_CUFFTMP=OFF \
     -DNVSHMEM_ROOT=$EBROOTNVSHMEM
+cmake --build build -j $(nproc)
+cmake --install build
+stow -d /project/home/p201412/.local/opt -t /project/home/p201412/.local $PKG-$VER
+```
+
+#### cuFFTMp-enabled build
+
+Load the required modules:
+
+```shell
+module load NVHPC/25.3-CUDA-12.8.0
+module load foss/2025a
+module load CUDA/12.8.0
+module load UCX-CUDA/1.18.0-GCCcore-14.2.0-CUDA-12.8.0
+module load CMake/3.31.3-GCCcore-14.2.0
+```
+
+The [cuFFTMp-enabled GROMACS installation guide] states that NVSHMEM must be
+available via `LD_LIBRARY_PATH` prior to installing a cuFFTMp-enabled build. On
+MeluXina, this is available here:
+`$NVHPC/Linux_x86_64/25.3/comm_libs/12.8/nvshmem`; add it as follows:
+
+```shell
+export LD_LIBRARY_PATH=$NVHPC/Linux_x86_64/25.3/comm_libs/12.8/nvshmem/lib:$LD_LIBRARY_PATH
+```
+
+> [!NOTE]
+> `NVHPC` is defined after loading NVHPC/25.3-CUDA-12.8.0. We used
+> `EBROOTNVSHMEM` for NVSHMEM above, but note that since these are compiled via
+> EasyBuild, both variables result in the same location.
+
+Proceed to install GROMACS as follows:
+
+```shell
+PKG=gromacs_cufftmp VER=2026.3
+mkdir -p /project/home/p201412/.local/src/$PKG
+curl https://ftp.gromacs.org/gromacs/gromacs-2026.3.tar.gz -L -o /project/home/p201412/.local/src/$PKG/$VER.tar.gz
+tar \
+    --one-top-level=$VER \
+    --strip-components=1 \
+    -C /project/home/p201412/.local/src/$PKG \
+    -f /project/home/p201412/.local/src/$PKG/$VER.tar.gz \
+    -x
+cd /project/home/p201412/.local/src/$PKG/$VER
+cmake \
+    -B build \
+    -DCMAKE_CUDA_ARCHITECTURES=80 \
+    -DCMAKE_INSTALL_PREFIX=/project/home/p201412/.local/opt/$PKG-$VER \
+    -DcuFFTMp_ROOT=$NVHPC/Linux_x86_64/25.3/math_libs/12.8 \
+    -DGMX_BUILD_OWN_FFTW=OFF \
+    -DGMX_FFT_LIBRARY=fftw3 \
+    -DGMX_GPU=CUDA \
+    -DGMX_MPI=ON \
+    -DGMX_OPENMP=ON \
+    -DGMX_USE_CUFFTMP=ON
+cmake --build build -j $(nproc)
+cmake --install build
+stow -d /project/home/p201412/.local/opt -t /project/home/p201412/.local $PKG-$VER
+```
+
+#### GROMACS with PLUMED patch for replica exchange
+
+As per [PLUMED's documentation], the newest version of GROMACS does not support
+a PLUMED patch. Thus, we choose GROMACS 2024.3 for this patch. As per the
+[code-specific notes], we should ensure that the following CMake options are
+disabled/enabled: `-DGMX_MPI=ON` and `-DGMX_THREAD_MPI=OFF`.
+
+Load the required modules:
+
+```shell
+module load foss/2025a
+module load CUDA/12.8.0
+module load UCX-CUDA/1.18.0-GCCcore-14.2.0-CUDA-12.8.0
+module load CMake/3.31.3-GCCcore-14.2.0
+module load PLUMED/2.9.4-foss-2025a
+```
+
+Proceed to install GROMACS as follows:
+
+```shell
+PKG=gromacs_plumed VER=2024.3
+mkdir -p /project/home/p201412/.local/src/$PKG
+curl https://ftp.gromacs.org/gromacs/gromacs-2024.3.tar.gz -L -o /project/home/p201412/.local/src/$PKG/$VER.tar.gz
+tar \
+    --one-top-level=$VER \
+    --strip-components=1 \
+    -C /project/home/p201412/.local/src/$PKG \
+    -f /project/home/p201412/.local/src/$PKG/$VER.tar.gz \
+    -x
+cd /project/home/p201412/.local/src/$PKG/$VER
+
+cmake \
+    -B build \
+    -DCMAKE_CUDA_ARCHITECTURES=80 \
+    -DCMAKE_INSTALL_PREFIX=/project/home/p201412/.local/opt/$PKG-$VER \
+    -DGMX_BUILD_OWN_FFTW=OFF \
+    -DGMX_FFT_LIBRARY=fftw3 \
+    -DGMX_GPU=CUDA \
+    -DGMX_MPI=ON \
+    -DGMX_OPENMP=ON \
+    -DGMX_THREAD_MPI=OFF
 cmake --build build -j $(nproc)
 cmake --install build
 stow -d /project/home/p201412/.local/opt -t /project/home/p201412/.local $PKG-$VER
@@ -142,3 +245,7 @@ mpirun \
         -s dopc-dope_dogl_3-1_T298.tpr \
         -update gpu
 ```
+
+[cuFFTMp-enabled GROMACS installation guide]: <https://manual.gromacs.org/current/install-guide/index.html#using-cufftmp>
+[PLUMED's documentation]: <https://www.plumed.org/doc-v2.9/user-doc/html/index.html>
+[code-specific notes]: <https://www.plumed.org/doc-v2.9/user-doc/html/gromacs-2024-3.html>
