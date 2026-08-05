@@ -171,7 +171,7 @@ tar \
     -f /project/home/p201412/.local/src/$PKG/$VER.tar.gz \
     -x
 cd /project/home/p201412/.local/src/$PKG/$VER
-
+plumed patch -p
 cmake \
     -B build \
     -DCMAKE_CUDA_ARCHITECTURES=80 \
