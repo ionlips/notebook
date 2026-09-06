@@ -1,6 +1,12 @@
 MD007:
   indent: 4
 
+MD013:
+  code_blocks: false
+  headings: false
+  line_length: 79
+  tables: false
+
 MD030:
   ol_multi: 2
   ol_single: 2

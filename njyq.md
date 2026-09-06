@@ -11,7 +11,7 @@ Ensure that Stow is installed first, as follows:
 mkdir -p ~/.local/opt ~/.local/src/stow
 
 # Download and extract.
-curl https://ftp.gnu.org/gnu/stow/stow-2.4.1.tar.gz -L -o ~/.local/src/stow/2.4.1.tar.gz
+curl -Lo https://ftp.gnu.org/gnu/stow/stow-2.4.1.tar.gz ~/.local/src/stow/2.4.1.tar.gz
 tar \
     --one-top-level=2.4.1 \
     --strip-components=1 \
@@ -35,7 +35,7 @@ PKG=foo VER=1.2.3
 mkdir -p ~/.local/src/$PKG
 
 # Download and extract.
-curl {{url}} -L -o ~/.local/src/$PKG/$VER.tar.gz
+curl -Lo {{url}} ~/.local/src/$PKG/$VER.tar.gz
 tar \
     --one-top-level=$VER \
     --strip-components=1 \
@@ -62,7 +62,7 @@ PKG=foo VER=1.2.3
 mkdir -p ~/.local/src/$PKG
 
 # Download and extract.
-curl {{url}} -L -o ~/.local/src/$PKG/$VER.tar.gz
+curl -Lo {{url}} ~/.local/src/$PKG/$VER.tar.gz
 tar \
     --one-top-level=$VER \
     --strip-components=1 \
