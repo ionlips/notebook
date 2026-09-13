@@ -1,6 +1,6 @@
 ---
 date: 2026-09-07
-keywords: []
+keywords: [rust]
 ---
 # dotfiles for unsupported glibc
 
@@ -15,11 +15,10 @@ supported (i.e., qllm has glibc version 2.34, as does MeluXina). To fix this,
 
 ```shell
 export $RUSTUP_HOME=$XDG_DATA_HOME/rustup
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path
 ```
 
-Make sure to modify the installation so that it doesn't modify `PATH`. Proceed
-to install `cargo-binstall` as follows:
+Proceed to install `cargo-binstall` as follows:
 
 > [!NOTE]
 > Add `export $CARGO_HOME=$XDG_DATA_HOME/cargo` to your `.rc` file(s) for it to
