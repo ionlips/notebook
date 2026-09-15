@@ -4,11 +4,18 @@ keywords: [yt-dlp]
 ---
 # yt-dlp
 
+Download for macOS as follows:
+
+```shell
+curl -Lo ~/.local/bin/yt-dlp https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos
+chmod +x ~/.local/bin/yt-dlp
+```
+
 Download audio from YouTube as follows (ensuring you are within a virtual
 environment where yt-dlp-ejs is installed):
 
 ```shell
-yt-dlp --audio-format opus --js-runtime node -x {{url}}
+yt-dlp --audio-format opus --js-runtime node -x "{{url}}"
 ```
 
 > [!NOTE]
