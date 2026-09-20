@@ -11,6 +11,8 @@ curl -Lo ~/.local/bin/yt-dlp https://github.com/yt-dlp/yt-dlp/releases/latest/do
 chmod +x ~/.local/bin/yt-dlp
 ```
 
+Download FFmpeg and FFprobe as per the [dependencies].
+
 Download audio from YouTube as follows (ensuring you are within a virtual
 environment where yt-dlp-ejs is installed):
 
@@ -24,3 +26,5 @@ yt-dlp --audio-format opus --js-runtime node -x "{{url}}"
 
 If you get an error regarding YouTube requiring you to sign in, pass the
 `--cookies-from-browser firefox` flag.
+
+[dependencies]: <https://github.com/yt-dlp/yt-dlp#strongly-recommended>
