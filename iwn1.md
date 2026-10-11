@@ -5,7 +5,7 @@ keywords: [ai]
 # Ujjwal-Tyagi/ai-ml-foundations-book-collection
 
 As per [Ujjwal-Tyagi/ai-ml-foundations-book-collection], these are the
-following "foundational" books for understanding machine learning:
+following foundational books for understanding machine learning:
 
 1.  **Mathematics and optimisation**:
 1.  **Core machine learning foundation**:

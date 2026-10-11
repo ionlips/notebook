@@ -4,20 +4,23 @@ keywords: [yt-dlp]
 ---
 # yt-dlp
 
+## Download and installation
+
 Download for macOS as follows:
 
 ```shell
-curl -Lo ~/.local/bin/yt-dlp https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos
+curl --location --output ~/.local/bin/yt-dlp "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos"
 chmod +x ~/.local/bin/yt-dlp
 ```
 
 Download FFmpeg and FFprobe as per the [dependencies].
 
-Download audio from YouTube as follows (ensuring you are within a virtual
-environment where yt-dlp-ejs is installed):
+## Download music from YouTube
+
+Ensure that you are within a virtual environment with yt-dlp-ejs installed.
 
 ```shell
-yt-dlp --audio-format opus --js-runtime node -x "{{url}}"
+yt-dlp --audio-format opus --extract-audio --js-runtime node "{{url}}"
 ```
 
 > [!NOTE]
@@ -26,5 +29,11 @@ yt-dlp --audio-format opus --js-runtime node -x "{{url}}"
 
 If you get an error regarding YouTube requiring you to sign in, pass the
 `--cookies-from-browser firefox` flag.
+
+## Download playlists from YouTube
+
+```shell
+yt-dlp --js-runtime node --output "%(playlist_title)s/%(playlist_index)s - %(title)s.%(ext)s" "{{url}}"
+```
 
 [dependencies]: <https://github.com/yt-dlp/yt-dlp#strongly-recommended>
