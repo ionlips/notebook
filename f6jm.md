@@ -36,3 +36,9 @@ If you get an error regarding YouTube requiring you to sign in, pass the
 ```shell
 yt-dlp --js-runtime node --output "%(playlist_title)s/%(playlist_index)s - %(title)s.%(ext)s" "{{url}}"
 ```
+
+## Download single short/video from YouTube
+
+```shell
+yt-dlp --js-runtime node --output "%(title)s.%(ext)s" "{{url}}"
+```
