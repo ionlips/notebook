@@ -13,8 +13,7 @@ curl --location --output ~/.local/bin/yt-dlp "https://github.com/yt-dlp/yt-dlp/r
 chmod +x ~/.local/bin/yt-dlp
 ```
 
-Download FFmpeg and FFprobe as per [yt-dlp's
-dependencies](https://github.com/yt-dlp/yt-dlp#strongly-recommended).
+Download FFmpeg and FFprobe.
 
 ## Download music from YouTube
 
@@ -33,11 +32,15 @@ If you get an error regarding YouTube requiring you to sign in, pass the
 
 ## Download playlists from YouTube
 
+Ensure that you are within a virtual environment with yt-dlp-ejs installed.
+
 ```shell
 yt-dlp --js-runtime node --output "%(playlist_title)s/%(playlist_index)s - %(title)s.%(ext)s" "{{url}}"
 ```
 
 ## Download single short/video from YouTube
+
+Ensure that you are within a virtual environment with yt-dlp-ejs installed.
 
 ```shell
 yt-dlp --js-runtime node --output "%(title)s.%(ext)s" "{{url}}"
