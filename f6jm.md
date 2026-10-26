@@ -17,7 +17,8 @@ Download FFmpeg and FFprobe.
 
 ## Download music from YouTube
 
-Ensure that you are within a virtual environment with yt-dlp-ejs installed.
+Ensure that you are within a virtual environment with yt-dlp-ejs installed and
+run the following:
 
 ```shell
 yt-dlp --audio-format opus --extract-audio --js-runtime node "{{url}}"
@@ -32,7 +33,8 @@ If you get an error regarding YouTube requiring you to sign in, pass the
 
 ## Download playlists from YouTube
 
-Ensure that you are within a virtual environment with yt-dlp-ejs installed.
+Ensure that you are within a virtual environment with yt-dlp-ejs installed and
+run the following:
 
 ```shell
 yt-dlp --js-runtime node --output "%(playlist_title)s/%(playlist_index)s - %(title)s.%(ext)s" "{{url}}"
@@ -40,7 +42,8 @@ yt-dlp --js-runtime node --output "%(playlist_title)s/%(playlist_index)s - %(tit
 
 ## Download single short/video from YouTube
 
-Ensure that you are within a virtual environment with yt-dlp-ejs installed.
+Ensure that you are within a virtual environment with yt-dlp-ejs installed and
+run the following:
 
 ```shell
 yt-dlp --js-runtime node --output "%(title)s.%(ext)s" "{{url}}"

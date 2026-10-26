@@ -16,7 +16,7 @@ tar --directory ~/.local/src/stow --extract --file ~/.local/src/stow/2.4.1.tar.g
 
 # Configure and install.
 mkdir --parents ~/.local/src/stow/2.4.1/build && cd $_
-../configure --prefix $HOME/.local
+../configure --prefix ~/.local
 make && make install
 ```
 
@@ -35,7 +35,7 @@ tar --directory ~/.local/src/$PKG --extract --file ~/.local/src/$PKG/$VER.tar.gz
 
 # Configure and install.
 mkdir --parents ~/.local/src/$PKG/$VER/build && cd $_
-../configure --prefix $HOME/.local/opt/$PKG-$VER
+../configure --prefix ~/.local/opt/$PKG-$VER
 make --jobs $(nproc) && make install
 
 # Symlink via Stow.
@@ -57,7 +57,7 @@ tar --directory ~/.local/src/$PKG --extract --file ~/.local/src/$PKG/$VER.tar.gz
 
 # Configure and install.
 cd ~/.local/src/$PKG/$VER
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$HOME/.local/opt/$PKG-$VER
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=~/.local/opt/$PKG-$VER
 cmake --build build --parallel $(nproc)
 cmake --install build
 
