@@ -1,6 +1,6 @@
 ---
 date: 2026-11-02
-keywords: [meeting]
+keywords: [ichec, meeting]
 ---
 # 2026-11-02T14:30+00:00 - Staff meeting
 

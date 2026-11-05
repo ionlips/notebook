@@ -1,6 +1,6 @@
 ---
 date: 2026-11-02
-keywords: [meeting]
+keywords: [ichec, meeting]
 ---
 # 2026-11-02T11:30+00:00 - MicroInspect
 

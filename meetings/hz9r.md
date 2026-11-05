@@ -1,6 +1,6 @@
 ---
 date: 2026-11-03
-keywords: [meeting]
+keywords: [ichec, meeting]
 ---
 # 2026-11-03T11:00+00:00 - National Service
 
